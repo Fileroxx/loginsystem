@@ -3,16 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <title>Document</title>
-</head>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+     <link rel="stylesheet" href="css/main.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.4/dist/sweetalert2.min.css">
+     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+
+     <!-- Add plugin styles -->
+     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+ 
+ 
+     <title>Dashboard - VideoPlayer</title>
+</head> 
 <body>
     
-    <h1>Hi <%= name %></h1>
-    <form action="/logout?_method=DELETE" method="POST">
-        <button type="submit">Log Out</button>
-    </form>
+    <div id="menu">
+
+        <div class="menu container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+                    <h1>Olá, <%= name %>!</h1>
+                </div>
+
+                <div class="col-lg-6">
+                    <form action="/logout?_method=DELETE" method="POST">
+                        <button type="submit">Log Out</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
-</body>
+    
+    
+        <div class="formulario">
+            
+            <h2>Personalize seu vídeo</h2>
+    
+            <label for="">Escolha o seu vídeo:</label>
+            <input type="file">
+    
+            <br><br>
+    
+            <div class="cores">
+               
+                <div class="color-picker">
+                    <label for="">Cor dos controles do vídeo:</label>
+    
+                    <label for="colorPicker" style="padding-left: .5rem;">
+                        <input type="color" name="color" id="colorPicker" >
+                    </label>
+                </div>
+    
+            </div>
+    
+            <br><br>
+    
+            <label class="form-switch">
+            <input type="checkbox" name="" id="" checked>
+            <i></i>
+            (Autoplay) - Recomendado
+            <br><br>
+            </label>
+    
+            <br>
+    
+            <label class="form-switch">
+                <input type="checkbox" name="" id="" checked>
+                <i></i>
+                (Aviso 'Aumente o Som') - Recomendado
+                <br><br>
+                </label>
+           
+           
+        </div>
+    
+    
+        <div class="produto">
+    
+            <h3>Produto</h3>
+            <br>
+            <label for="">
+                Link do Produto
+                <input type="url" name="urlProduct" id="urlProduct" placeholder="https://yampi.com/products/135415154">
+            </label>
+            <br><br>
+            
+            <label for="">Definir tempo/ação no vídeo (00:00)
+                <input id="tempo" type="time">
+            </label>
+            <br><br>
+        </div>
+    
+    
+        <div class="pixel">
+            <h3>Pixel</h3>
+            <br>
+            
+            <label for="">
+                Serviços
+                <select name="pixel" id="pixel">
+                    <option value="facebook">Facebook</option>
+                    <option value="google-ads">Google Ads</option>
+                    <option value="taboola">Taboola</option>
+                    <option value="outbrain">Outbrain</option>
+                    <option value="pinterest">Pinterest</option>
+                    <option value="tiktok">TikTok</option>
+                </select>
+            </label>
+    
+    
+            <br><br>
+    
+            <label for="">Nome do pixel</label>
+            <input type="text">
+    
+            <br><br>
+    
+            <label for="">ID de conversão</label>
+            <input type="text">
+    
+            <br><br>
+    
+            <label for="">Valor enviado para o pixel
+            </label>
+            <select name="pixel" id="pixel">
+                <option value="servicos">Selecione..</option>
+                <option value="facebook">Valor total do pedido (com juros)</option>
+                <option value="google-ads">Valor dos produtos + Frete</option>
+            </select>
+    
+    
+    
+            <br><br>
+    
+            <div class="botao">
+                <button onclick="sweetalertclick()" type="button">Salvar</button>
+            </div>
+    
+    
+        </div>
+    
+            <div id="result"></div>
+    
+        <div class="player">
+        
+            <video class="player__video viewner" width="50%" autoplay="true" muted loop>
+                <source src="src/casimiro.mp4" type="video/mp4">
+            </video>
+    
+            <div class="player__controls">
+    
+                <div class="progress">
+                    <div class="progress__filled"></div>
+                </div>
+                <button class="player__button toggle" title="Toggle Play">▶</button>
+                <input type="range" name="volume" class="
+                player__slider" min="0" max="1" step="0.05" value="1"
+                >
+                <input type="range" name="playbackRate" class="
+                player__slider" min="0.5" max="2" step="0.1" value="1"
+                >
+            
+                <button class="player__button" onclick="toggleMute()">
+                    Vol/Mute
+                </button>
+    
+                <button data-skip="-10" class="player__button">
+                    ⇤ 10s
+                </button>
+                <button data-skip="25" class="player__button">
+                    25s ⇥
+                </button>
+    
+            </div>
+    
+    
+    
+        </div>
+    
+    
+    
+    
+    
+        <div class="copy">
+    
+            <h4>Copie esse código e coloque na sua plataforma E-commerce</h4>
+    
+        <div class="area">
+    
+            <input type="text" id="copiar" value="
+            <src='videocommerce.com.br/video/149184791349'><iframe>
+            ">
+            <button onclick="copiarelemento()">Copiar</button>
+        </div>
+         
+    
+    
+        </div>
+    
+        <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    
+        <script type="text/javascript">
+
+            function sweetalertclick() {
+                new Swal(
+                    'Parabéns!',
+                    'Seu vídeo customizado está pronto!',
+                    'success'
+    
+                )
+            }
+    
+            document.querySelectorAll('input[type=color]').forEach(function (picker) {
+                
+                var targetLabel = document.querySelector('label[for="' + picker.id + '"]'),
+                colorArea = document.createElement('span');
+
+                colorArea.innerHTML = picker.value;
+                targetLabel.appendChild(colorArea);
+
+                picker.addEventListener('change', function() {
+                    colorArea.innerHTML = picker.value;
+                    targetLabel.appendChild(colorArea);
+                })
+
+            })
+
+    
+    
+            console.log(sweetalertclick)
+    
+            
+            
+            FilePond.registerPlugin(
+
+                FilePondPluginImagePreview,
+                FilePondPluginImageResize,
+                FilePondPluginImageTransform
+
+            );
+
+
+
+            const inputElement = document.querySelector('input[type=file]');
+
+            const pond = FilePond.create(inputElement, {
+                imageResizeTargetWidth:256,
+            
+                onaddfile:(err,fileItem)=>{
+                    console.log(err, fileItem.getMetadata('resize'))
+                }
+            
+            
+            })
+
+    
+        </script>
+    
+        <script type="text/javascript" src="js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.4/dist/sweetalert2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/fontawesome.min.js" integrity="sha512-vF2g7ozd8M2AA8re3eCrfJT2vvrOmIbW9JhodInQHN5Xjg6ec6nJpMJQcwuXm+aOhQze+CrM2rFQLftMtQA+bA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <!-- Add plugin scripts -->
+        <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.js"></script>
+    
+
+  
+   </body>
 </html>
