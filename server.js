@@ -22,6 +22,8 @@ initializePassport(
 
 const users = []
 
+app.set('views', __dirname + '/views')
+app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/js', express.static(__dirname + 'public/js'))
@@ -46,7 +48,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs');
 })
 
-app.post('/login', passport.authenticate('local', {
+app.post('/pages/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
@@ -54,11 +56,13 @@ app.post('/login', passport.authenticate('local', {
 }))
 
 
-app.get('/register', (req, res) => {
+app.get('/pages/register', (req, res) => {
     res.render('register.ejs');
 })
 
 app.post('/register', async (req, res) => {
+    const  usuario  = req.body.email;
+
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
         users.push({
@@ -67,7 +71,18 @@ app.post('/register', async (req, res) => {
             email: req.body.email,
             password: hashedPassword
         })
-        res.redirect('/login')
+
+        if (usuario) {
+            return res.status(400).json({ ok: false, msg: 'O usuário já existe!' });
+        }
+
+
+        setTimeout(() => {
+            req.flash('sucess_msg', 'Você está registrado e agora consegue logar')
+            res.redirect('/login')
+        }, 2000)
+        
+
 
     } catch {
         res.redirect('/register')
