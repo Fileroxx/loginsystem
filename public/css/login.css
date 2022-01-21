@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f6fc !important;
+  font-family: "Inter", sans-serif !important;
+}
+
+.cardLogin {
+  background: #fff;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 20rem;
+  text-align: center;
+  border-radius: 10px;
+  padding: 3rem 0rem;
+  height: 40vh;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.cardLogin h1 {
+  font-family: "Montserrat", sans-serif;
+  color: #11263c;
+  font-weight: 400;
+}
+
+.cardLogin form {
+  margin: 2rem 0;
+}
+
+.cardLogin input {
+  width: 70%;
+  padding: 0.8rem 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  outline: none;
+  color: #11263c;
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
+.cardLogin button {
+  background: #2e5cff;
+  color: #fff;
+  width: 70%;
+  margin-top: 0.5rem;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  height: 4vh;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.cardLogin a {
+  text-decoration: none;
+}
