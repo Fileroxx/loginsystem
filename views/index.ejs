@@ -207,66 +207,8 @@
     
     
         </div>
-    
-        <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-    
-        <script type="text/javascript">
+        
 
-            function sweetalertclick() {
-                new Swal(
-                    'Parabéns!',
-                    'Seu vídeo customizado está pronto!',
-                    'success'
-    
-                )
-            }
-    
-            document.querySelectorAll('input[type=color]').forEach(function (picker) {
-                
-                var targetLabel = document.querySelector('label[for="' + picker.id + '"]'),
-                colorArea = document.createElement('span');
-
-                colorArea.innerHTML = picker.value;
-                targetLabel.appendChild(colorArea);
-
-                picker.addEventListener('change', function() {
-                    colorArea.innerHTML = picker.value;
-                    targetLabel.appendChild(colorArea);
-                })
-
-            })
-
-    
-    
-            console.log(sweetalertclick)
-    
-            
-            
-            FilePond.registerPlugin(
-
-                FilePondPluginImagePreview,
-                FilePondPluginImageResize,
-                FilePondPluginImageTransform
-
-            );
-
-
-
-            const inputElement = document.querySelector('input[type=file]');
-
-            const pond = FilePond.create(inputElement, {
-                imageResizeTargetWidth:256,
-            
-                onaddfile:(err,fileItem)=>{
-                    console.log(err, fileItem.getMetadata('resize'))
-                }
-            
-            
-            })
-
-    
-        </script>
-    
         <script type="text/javascript" src="js/script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.4/dist/sweetalert2.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -276,8 +218,8 @@
         <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
         <script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
         <script src="https://unpkg.com/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.js"></script>
+        <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     
 
-  
    </body>
 </html>
